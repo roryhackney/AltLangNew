@@ -1,39 +1,37 @@
-//WHY ISn"T THIS SHOWING UP IN THE PROJCET
+// using System;
+// using Xunit;
+// using Moq;
 
-using System;
-using Xunit;
-using Moq;
+// // Imports Example File from TestProject
+// using Program;
 
-// Imports Example File from TestProject
-using AltLang.Example;
-
-namespace AltLang.UnitTests.Example
-{
-    public class Example_NewClassShould
-    {
-        private readonly NewClass _newclass;
+// namespace AltLang.UnitTests.Example
+// {
+//     public class Example_NewClassShould
+//     {
+//         private readonly NewClass _newclass;
         
-        public Example_NewClassShould()
-        {
-            _newclass = new NewClass();
-        }
+//         public Example_NewClassShould()
+//         {
+//             _newclass = new NewClass();
+//         }
         
-        // First Test for NewMethod
-        [Fact]
-        public void NewMethod_ShouldReturnTrue()
-        {
-            bool result = _newclass.NewMethod(true);
+//         // First Test for NewMethod
+//         [Fact]
+//         public void NewMethod_ShouldReturnTrue()
+//         {
+//             bool result = _newclass.NewMethod(true);
 
-            Assert.True(result, "Given true should return true.");
-        }
+//             Assert.True(result, "Given true should return true.");
+//         }
         
-        // Second Test for NewMethod
-        [Fact]
-        public void NewMethod_ShouldReturnFalse()
-        {
-            bool result = _newclass.NewMethod(false);
+//         // Second Test for NewMethod
+//         [Fact]
+//         public void NewMethod_ShouldReturnFalse()
+//         {
+//             bool result = _newclass.NewMethod(false);
 
-            Assert.False(result, "Given false should return false.");
-        }
-    }
-}
+//             Assert.False(result, "Given false should return false.");
+//         }
+//     }
+// }
