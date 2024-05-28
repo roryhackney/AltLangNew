@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Buffers;
+using System.IO;
 using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -32,16 +33,16 @@ namespace Program {
                     //cleaning time
                     string? oem = cleanMissingValue(origs[0]);
                     string? model = cleanMissingValue(origs[1]);
-                    int? announceYear = cleanYear(origs[2]);
-                    string? launchStatus = cleanStatus(origs[3]);
+                    int? announceYear = cleanYear(cleanMissingValue(origs[2]));
+                    string? launchStatus = cleanStatus(cleanMissingValue(origs[3]));
                     string? bodyDim = cleanMissingValue(origs[4]);
-                    float? weight = cleanWeight(origs[5]);
+                    float? weight = cleanWeight(cleanMissingValue(origs[5]));
                     string? sim = cleanYesNo(cleanMissingValue(origs[6]));
                     string? displayType = cleanMissingValue(origs[7]);
-                    float? inches = cleanSize(origs[8]);
+                    float? inches = cleanSize(cleanMissingValue(origs[8]));
                     string? res = cleanMissingValue(origs[9]);
-                    string? features = cleanNums(origs[10]);
-                    string? os = cleanOS(origs[11]);
+                    string? features = cleanNums(cleanMissingValue(origs[10]));
+                    string? os = cleanOS(cleanMissingValue(origs[11]));
 
                     //create each cell and add to dict
                     Cell c = new Cell(oem, model, announceYear, launchStatus, bodyDim, weight, sim, displayType, inches, res, features, os);
@@ -243,6 +244,80 @@ namespace Program {
             }
             return topYear;
         }
-    }
 
+        //Seven methods:
+            //1 - Cell.toString
+            //2 - Cell.Equals
+            //3 - First Ever Launch Announcement Year (Min)
+            //4 - Middle Year of All Launch Announcements (Median)
+            //5 - Average Display Size (Mean)
+            //6 - Heaviest Body Weight (Max)
+            //7 - Most Frequent sim card (Mode)
+
+        public static int getFirstLaunchYear(Dictionary<int, Cell> dict) {
+            int year = 9999;
+            foreach (KeyValuePair<int, Cell> pair in dict) {
+                int? y = pair.Value.LaunchAnnounced;
+                if (y != null && y < year) year = (int)y;
+            }
+            return year;
+        }
+
+        public static double getMedianLaunchYear(Dictionary<int, Cell> dict) {
+            int[] years = new int[dict.Count];
+            int index = 0;
+            foreach (KeyValuePair<int, Cell> pair in dict) {
+                int? year = pair.Value.LaunchAnnounced;
+                if (year != null) {
+                    years[index] = (int)year;
+                }
+            }
+            Array.Sort(years);
+            if (years.Length % 2 != 0) {
+                return years[years.Length / 2];
+            } else {
+                return (years[years.Length / 2] + years[years.Length / 2 - 1]) / 2.0;
+            }
+        }
+
+        public static float getMeanDisplaySize(Dictionary<int, Cell> dict) {
+            float total = 0;
+            int count = 0;
+            foreach (Cell value in dict.Values) {
+                if (value.DisplaySize != null) {
+                    total += (float)value.DisplaySize;
+                    count++;
+                }
+            }
+            return total / count;
+        }
+
+        public static float getMaxBodyWeight(Dictionary<int, Cell> dict) {
+            float max = 0;
+            foreach (Cell value in dict.Values) {
+                if (value.BodyWeight != null && value.BodyWeight > max) max = (float)value.BodyWeight; 
+            }
+            return max;
+        }
+
+        public static string simCardMode(Dictionary<int, Cell> dict) {
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+            foreach (Cell c in dict.Values) {
+                if (counts.ContainsKey(c.BodySim)) {
+                    counts[c.BodySim]++;
+                } else {
+                    counts[c.BodySim] = 1;
+                }
+            }
+            string mode = "";
+            int max = 0;
+            foreach (KeyValuePair<string, int> pair in counts) {
+                if (pair.Value > max) {
+                    mode = pair.Key;
+                    max = pair.Value;
+                }
+            }
+            return mode + " occurred most often at " + max + " times.";
+        }
+    }
 }

@@ -1,6 +1,9 @@
 # Alternate Language Project
 Rory Hackney
 
+To run the project: dotnet run --project "src/"
+To run the tests: dotnet test
+
 ## Which programming language did you pick and why?
 
 I picked C# because I've seen it being asked for a lot in job and internship postings, it seems to be used widely in the field, but is fairly similar to Java so not as difficult as some others to learn. It also seems much safer than C and C++. Additionally, my little brother is getting into game development and I know it's used in that area as well, so I thought it might be fun to learn so I can help him work on a project this summer.
