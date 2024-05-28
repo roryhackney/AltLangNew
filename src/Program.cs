@@ -45,8 +45,9 @@ namespace Program {
 
                     //create each cell and add to dict
                     Cell c = new Cell(oem, model, announceYear, launchStatus, bodyDim, weight, sim, displayType, inches, res, features, os);
-                    dict.Add(lineNum, c);
-                    // Console.WriteLine("Line " + lineNum + ": " + c);
+                    //only add if not a duplicate row
+                    if (! dict.ContainsValue(c)) dict.Add(lineNum, c);
+                    
                 }
                 lineNum++;
             }

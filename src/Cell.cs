@@ -1,18 +1,18 @@
 using System.Text;
 
 public class Cell {
-    public string? Oem {get;}
-    public string? Model {get;}
-    public int? LaunchAnnounced {get;}
-    public string? LaunchStatus {get;}
-    public string? BodyDimensions {get;}
-    public float? BodyWeight {get;}
-    public string? BodySim {get;}
-    public string? DisplayType {get;}
-    public float? DisplaySize {get;}
-    public string? DisplayResolution {get;}
-    public string? FeaturesSensors {get;}
-    public string? PlatformOS {get;}
+    public string? Oem {get; set;}
+    public string? Model {get; set;}
+    public int? LaunchAnnounced {get; set;}
+    public string? LaunchStatus {get; set;}
+    public string? BodyDimensions {get; set;}
+    public float? BodyWeight {get; set;}
+    public string? BodySim {get; set;}
+    public string? DisplayType {get; set;}
+    public float? DisplaySize {get; set;}
+    public string? DisplayResolution {get; set;}
+    public string? FeaturesSensors {get; set;}
+    public string? PlatformOS {get; set;}
 
     public Cell(string? Oem, string? Model, int? LaunchAnnounced, string? LaunchStatus, string? BodyDimensions,
                 float? BodyWeight, string? BodySim, string? DisplayType, float? DisplaySize, string? DisplayResolution,
@@ -47,5 +47,33 @@ public class Cell {
         sb.Append(FeaturesSensors).Append("\n");
         sb.Append(PlatformOS).Append("}").Append("\n");
         return sb.ToString();
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj != null && obj.GetType() == this.GetType()) {
+            Cell other = (Cell) obj;
+            if (bothNullOrEqual<string?>(Oem, other.Oem) &&
+                bothNullOrEqual<string?>(Model, other.Model) &&
+                bothNullOrEqual<int?>(LaunchAnnounced, other.LaunchAnnounced) &&
+                bothNullOrEqual<string?>(LaunchStatus, other.LaunchStatus) &&
+                bothNullOrEqual<string?>(BodyDimensions, other.BodyDimensions) &&
+                bothNullOrEqual<float?>(BodyWeight, other.BodyWeight) &&
+                bothNullOrEqual<string?>(BodySim, other.BodySim) &&
+                bothNullOrEqual<string?>(DisplayType, other.DisplayType) &&
+                bothNullOrEqual<float?>(DisplaySize, other.DisplaySize) &&
+                bothNullOrEqual<string?>(DisplayResolution, other.DisplayResolution) &&
+                bothNullOrEqual<string?>(FeaturesSensors, other.FeaturesSensors) &&
+                bothNullOrEqual<string?>(PlatformOS, other.PlatformOS)
+            ) {return true;}
+        }
+        return false;
+    }
+
+    public bool bothNullOrEqual<T> (Object? value1, Object? value2) {
+        if (value1 == null && value2 == null) return true;
+        if (value1 == null || value2 == null) return false;
+        if (value1.Equals(value2)) return true;
+        return false;
     }
 }
