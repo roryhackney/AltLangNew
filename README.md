@@ -1,14 +1,10 @@
 # Alternate Language Project
-Rory Hackney
-
 To run the project: dotnet run --project "src/"
 To run the tests: dotnet test
 
-## Which programming language did you pick and why?
 
-I picked C# because I've seen it being asked for a lot in job and internship postings, it seems to be used widely in the field, but is fairly similar to Java so not as difficult as some others to learn. It also seems much safer than C and C++. Additionally, my little brother is getting into game development and I know it's used in that area as well, so I thought it might be fun to learn so I can help him work on a project this summer.
+I decided to learn to use C# for this project since I've seen it requested a lot in various internship and job postings in the CS field. From my research, I learned that it is safer and more secure than C and C++, and is somewhat similar to Java in terms of syntax.
 
-## If one or more of these are not supported by your programming language, indicate it as so. How does your programming language chosen handle... 
 ### Object Oriented Programming
 C# is an object oriented programming language, similar to Java. It allows the creation of user defined classes, which are a template for instantiated objects. C# supports abstraction, encapsulation, inheritance (but not multiple inheritance), and polymorphism. Access can be private, public, or protected, like in Java, but also internal, protected internal, and private protected. C# also supports abstract classes, interfaces, and sealed classes, which cannot be inherited. Classes can be nested. Immutable records and structs are also supported.
 
@@ -35,8 +31,7 @@ To use XUnit, you have to create a separate test project separate from your sour
 ### Exception Handling
 System exceptions are built into C# starting with the Exception class and subclassing from there using a hierarchy, which includes exceptions such as IndexOutOfRangeException, FileNotFoundException, and so on. Developers can create their own custom exceptions by creating a class that inherits from Exception and defines the three required constructors. Exceptions are caught with try / catch / finally blocks, and thrown with the syntax throw MyException;. If an exception is not caught, it will go up the call hierarchy and terminate the program after displaying the error message.
 
-## List out 3 libraries you used from your programming language (if applicable) and explain what they are, why you chose them and what you used them for.
-
+## Some libraries I used from C# are:
 ### XUnit
 is a unit testing library for C#. From the guides I read online comparing the unit testing options, XUnit seemed to be popular and modern, and with the help of a setup tutorial wasn't too painful to set up.
 
@@ -46,7 +41,7 @@ is a built in library for creating regular expressions and finding matches, whic
 ### System.IO
 (primarily File) for reading and processing the input CSV file. This allows processing of each individual line using foreach with a single method call, File.ReadLines(path) which returns an IEnumerable to process one line at a time.
 
-## Answer the following questions (and provide a corresponding screen showing output answering them):
+## Running main will display the following information:
 ### What company (oem) has the highest average weight of the phone body?
 HP, with an average body weight of 148.44
 
