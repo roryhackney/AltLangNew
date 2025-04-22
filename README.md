@@ -1,10 +1,10 @@
-# Alternate Language Project
+# Data Processing With C\#
 To run the project: dotnet run --project "src/"
 To run the tests: dotnet test
 
 The purpose of the project is to read a data file containing information about phone models, clean the data, and process it in order to calculate various pieces of information, eg the company with the highest average weight of phone bodies.
 
-I decided to learn to use C# for this project since I've seen it requested a lot in various internship and job postings in the CS field. From my research, I learned that it is safer and more secure than C and C++, and is somewhat similar to Java in terms of syntax.
+I decided to learn to use C# for this project since I've seen it requested a lot in various internship and job postings in the CS field. From my research, I learned that it is safer and more secure than C and C++, and is somewhat similar to Java in terms of syntax. I also wrote up a summary of what I learned.
 
 ### Object Oriented Programming
 C# is an object oriented programming language, similar to Java. It allows the creation of user defined classes, which are a template for instantiated objects. C# supports abstraction, encapsulation, inheritance (but not multiple inheritance), and polymorphism. Access can be private, public, or protected, like in Java, but also internal, protected internal, and private protected. C# also supports abstract classes, interfaces, and sealed classes, which cannot be inherited. Classes can be nested. Immutable records and structs are also supported.
